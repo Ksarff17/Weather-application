@@ -19,6 +19,7 @@ ul {
 
 .card {
   width: 100%;
+  padding: 20px 15px;
 }
 .location-form {
   display: inline;
@@ -34,6 +35,11 @@ ul {
   text-align: center;
   padding: 25px;
 }
+
+.col-sm-2 :hover {
+  background-color: rgb(253, 247, 198);
+}
+
 .cityDisplay {
   position: relative;
   margin-top: 15px;
