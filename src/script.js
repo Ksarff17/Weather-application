@@ -43,13 +43,13 @@ function displayCityInfo(city) {
 
 function search(city) {
   let apiKey = "b843fca9f9a79bd6c742882e59a68cab";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayCityInfo);
 }
 
 function searchSubmit(event) {
   event.preventDefault();
-  let city = document.querySelector("#city");
+  let city = document.querySelector("#city").value;
   search(city);
 }
 
@@ -72,4 +72,4 @@ function exactCoordinate(event) {
 let button = document.querySelector("#geolocationButton");
 button.addEventListener("click", exactCoordinate);
 
-search(Milwaukee);
+search("Milwaukee");
