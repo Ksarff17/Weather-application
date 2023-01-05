@@ -21,8 +21,10 @@ ul {
   width: 100%;
 }
 .col-sm-2 {
-  padding: 25px;
   border-radius: 5px;
+  font-size: 18px;
+  text-align: center;
+  padding: 25px;
 }
 .cityDisplay {
   position: relative;
@@ -46,12 +48,4 @@ ul {
 }
 #todays-date {
   font-size: 18px;
-}
-
-#sixDayForecast {
-  font-size: 18px;
-  font-weight: 500;
-  margin-left: 0px;
-  text-align: center;
-  width: 100%;
 }
