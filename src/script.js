@@ -49,6 +49,7 @@ function displayCityInfo(city) {
     "src",
     `http://openweathermap.org/img/wn/${icon}@2x.png`
   );
+  iconElement.setAttribute("alt", city.data.weather[0].description);
   humidity.innerHTML = city.data.main.humidity;
   windSpeed.innerHTML = Math.round(city.data.wind.speed);
 }
