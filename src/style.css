@@ -1,3 +1,6 @@
+body {
+  font-family: monospace;
+}
 button {
   border-radius: 5px;
   background-color: rgb(37, 141, 251);
@@ -5,13 +8,14 @@ button {
   padding: 5px 20px;
 }
 ul {
-  font-family: "Times New Roman", Times, serif;
   list-style-type: none;
   padding: 0px;
   color: #0f1011;
 }
 li {
-  font-size: 14px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: normal;
 }
 .container {
   margin-top: 30px;
@@ -63,7 +67,4 @@ li {
   font-size: 20px;
   position: relative;
   top: -15px;
-}
-#todays-date {
-  font-size: 18px;
 }

@@ -35,10 +35,25 @@ today();
 
 function displayCityInfo(city) {
   let currentLocation = document.querySelector("#current-location");
-  currentLocation.innerHTML = city.data.name;
   let temperature = document.querySelector("#currentTemp");
+  let description = document.querySelector("#description");
   let cityTemp = Math.round(city.data.main.temp);
+  let windSpeed = document.querySelector("#windSpeed");
+  let humidity = document.querySelector("#humidity");
+  let iconElement = document.querySelector("#icon");
+  let icon = city.data.weather[0].icon;
+
+  console.log(city.data);
+
+  currentLocation.innerHTML = city.data.name;
   temperature.innerHTML = `${cityTemp}°`;
+  description.innerHTML = city.data.weather[0].description;
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${icon}@2x.png`
+  );
+  humidity.innerHTML = city.data.main.humidity;
+  windSpeed.innerHTML = Math.round(city.data.wind.speed);
 }
 
 function search(city) {
@@ -71,5 +86,4 @@ function exactCoordinate(event) {
 
 let button = document.querySelector("#geolocationButton");
 button.addEventListener("click", exactCoordinate);
-
 search("Milwaukee");
