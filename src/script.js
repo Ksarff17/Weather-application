@@ -42,9 +42,6 @@ function displayCityInfo(city) {
   let humidity = document.querySelector("#humidity");
   let iconElement = document.querySelector("#icon");
   let icon = city.data.weather[0].icon;
-
-  console.log(city.data);
-
   currentLocation.innerHTML = city.data.name;
   temperature.innerHTML = `${cityTemp}°`;
   description.innerHTML = city.data.weather[0].description;
