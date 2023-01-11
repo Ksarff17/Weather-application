@@ -49,7 +49,7 @@ ul {
 #current-location {
   font-size: 30px;
 }
-.temperature {
+#temperature {
   font-size: 40px;
   font-weight: 500;
   margin-top: 10px;
