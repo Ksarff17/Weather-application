@@ -11,39 +11,31 @@ function today() {
   ];
   let day = days[currentDate.getDay()];
   let hour = currentDate.getHours();
-  hour = addZero(hour);
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
   let minutes = currentDate.getMinutes();
-  minutes = addZero(minutes);
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
   let time = `${hour}:${minutes}`;
 
   let todaysDate = document.querySelector("#todays-date");
-
-  if (hour > 12) {
-    todaysDate.innerHTML = `${day}, ${time} P.M.`;
-  } else {
-    todaysDate.innerHTML = `${day}, ${time} A.M.`;
-  }
+  return `${day} ${hour}:${minutes}`;
 }
-function addZero(number) {
-  if (number < 10) {
-    number = "0" + number;
-  }
-  return number;
-}
-
-today();
 
 function displayCityInfo(city) {
   let currentLocation = document.querySelector("#current-location");
   let temperature = document.querySelector("#currentTemp");
   let description = document.querySelector("#description");
-  let cityTemp = Math.round(city.data.main.temp);
+  let cityTemp = Math.round(celsiusTemp);
   let windSpeed = document.querySelector("#windSpeed");
   let humidity = document.querySelector("#humidity");
   let iconElement = document.querySelector("#icon");
   let icon = city.data.weather[0].icon;
+  celsiusTemp = city.data.main.temp;
   currentLocation.innerHTML = city.data.name;
-  temperature.innerHTML = `${cityTemp}°`;
+  temperature.innerHTML = `${cityTemp}`;
   description.innerHTML = city.data.weather[0].description;
   iconElement.setAttribute(
     "src",
@@ -66,9 +58,6 @@ function searchSubmit(event) {
   search(city);
 }
 
-let citySearch = document.querySelector("#city-search-form");
-citySearch.addEventListener("submit", searchSubmit);
-
 function searchLocation(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -82,6 +71,36 @@ function exactCoordinate(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
+function displayFarhenheitTemp(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let temperature = document.querySelector("#currentTemp");
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  temperature.innerHTML = Math.round(fahrenheitTemp);
+}
+
+function displayCelsiusTemp(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperature = document.querySelector("#currentTemp");
+
+  temperature.innerHTML = Math.round(celsiusTemp);
+}
+
+let citySearch = document.querySelector("#city-search-form");
+citySearch.addEventListener("submit", searchSubmit);
+
 let button = document.querySelector("#geolocationButton");
 button.addEventListener("click", exactCoordinate);
+
+let celsiusTemp = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFarhenheitTemp);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemp);
+
 search("Milwaukee");
