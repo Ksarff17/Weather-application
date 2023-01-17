@@ -21,7 +21,7 @@ function today() {
   let time = `${hour}:${minutes}`;
 
   let todaysDate = document.querySelector("#todays-date");
-  return `${day} ${hour}:${minutes}`;
+  todaysDate.innerHTML = `${day} ${time}`;
 }
 
 function displayCityInfo(city) {
@@ -103,4 +103,5 @@ fahrenheitLink.addEventListener("click", displayFarhenheitTemp);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemp);
 
+today();
 search("Milwaukee");
