@@ -41,21 +41,15 @@ li {
   width: auto;
 }
 
-.col-sm-2 {
-  border-radius: 5px;
-  font-size: 18px;
-  text-align: center;
-  padding: 25px;
-}
-
-.col-sm-2 :hover {
-  background-color: rgb(253, 247, 198);
-}
-
 .cityDisplay {
   position: relative;
   margin-top: 15px;
   margin-left: 30px;
+}
+
+.weather-forecast {
+  text-align: center;
+  font-size: 18px;
 }
 #current-location {
   font-size: 30px;
