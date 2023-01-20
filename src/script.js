@@ -53,10 +53,9 @@ function displayWeatherForecast(response) {
         <div class="weather-forecast-temperatures">
           <span class="weather-forecast-temperature-max">${Math.round(
             forecastDay.temp.max
-          )}°</span> |
-          <span class="weather-forecast-temperature-min">${Math.round(
-            forecastDay.temp.min
-          )}°</span>
+          )}°</span>|<span class="weather-forecast-temperature-min">${Math.round(
+          forecastDay.temp.min
+        )}°</span>
         </div>
       </div>
   `;
@@ -69,7 +68,7 @@ function displayWeatherForecast(response) {
 
 function getWeeklyForecast(coordinates) {
   let apiKey = "b95f179627c8dd37f41e1be6e3250e19";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayWeatherForecast);
 }
 
@@ -77,12 +76,12 @@ function displayCityInfo(city) {
   let currentLocation = document.querySelector("#current-location");
   let temperature = document.querySelector("#currentTemp");
   let description = document.querySelector("#description");
-  let cityTemp = Math.round(celsiusTemp);
+  let cityTemp = Math.round(city.data.main.temp);
   let windSpeed = document.querySelector("#windSpeed");
   let humidity = document.querySelector("#humidity");
   let iconElement = document.querySelector("#icon");
   let icon = city.data.weather[0].icon;
-  celsiusTemp = city.data.main.temp;
+
   currentLocation.innerHTML = city.data.name;
   temperature.innerHTML = `${cityTemp}`;
   description.innerHTML = city.data.weather[0].description;
@@ -99,7 +98,7 @@ function displayCityInfo(city) {
 
 function search(city) {
   let apiKey = "b843fca9f9a79bd6c742882e59a68cab";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayCityInfo);
 }
 
@@ -113,7 +112,7 @@ function searchLocation(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let apiKey = "b843fca9f9a79bd6c742882e59a68cab";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayCityInfo);
 }
 
@@ -122,37 +121,11 @@ function exactCoordinate(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-function displayFarhenheitTemp(event) {
-  event.preventDefault();
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let temperature = document.querySelector("#currentTemp");
-  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
-  temperature.innerHTML = Math.round(fahrenheitTemp);
-}
-
-function displayCelsiusTemp(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let temperature = document.querySelector("#currentTemp");
-
-  temperature.innerHTML = Math.round(celsiusTemp);
-}
-
 let citySearch = document.querySelector("#city-search-form");
 citySearch.addEventListener("submit", searchSubmit);
 
 let button = document.querySelector("#geolocationButton");
 button.addEventListener("click", exactCoordinate);
-
-let celsiusTemp = null;
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFarhenheitTemp);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemp);
 
 today();
 search("Milwaukee");

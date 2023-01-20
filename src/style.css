@@ -13,7 +13,7 @@ a {
 ul {
   list-style-type: none;
   padding: 0px;
-  color: #0f1011;
+  color: #393b3e;
 }
 li {
   font-size: 20px;
@@ -24,16 +24,23 @@ img {
   width: 45px;
 }
 .weather-forecast {
+  font-size: 18px;
   text-align: center;
-  margin-left: 20px;
   margin-bottom: 20px;
+  width: 100%;
 }
 .container {
   margin-top: 30px;
 }
 .weather-app {
+  background: linear-gradient(
+    0.2deg,
+    rgb(51, 204, 255) 4.8%,
+    rgb(51, 102, 255) 85.5%
+  );
   border: 1px solid black;
   border-radius: 10px;
+  opacity: 0.1px;
   width: 100%;
 }
 .control-form {
@@ -52,25 +59,25 @@ img {
 .cityDisplay {
   position: relative;
   margin-top: 15px;
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 #current-location {
   font-size: 30px;
 }
+
+#icon {
+  width: 100px;
+}
+
 #temperature {
-  font-size: 40px;
+  font-size: 50px;
   font-weight: 500;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-#tempConversion {
+#tempUnit {
   font-size: 20px;
   position: relative;
   top: -15px;
-}
-#tempConversion .active {
-  cursor: default;
-  color: black;
-  text-decoration: none;
 }
